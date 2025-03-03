@@ -4,15 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+  <script src="j.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
+   
+      nav{
+        margin-bottom: 0;
+        padding: 0%;
+      }
+      button{
+        background-color:rgb(224, 88, 111);
+    color: #fff;
+    border:none;
+    border-radius:10px;
+  
+    size: 90px;
+      }
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#searchInput {
+    padding: 8px;
+    width: 200px;
+}
+
+
+      #suggestionsList {
+    list-style: none;
+    padding: 0;
+    border: 1px solid #ccc;
+    max-width: 300px;
+    background: white;
+    position:absolute;
+    z-index: 1000;
+    
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background: lightgray;
+}
+
+
       .nav-link{
         color: whitesmoke;
       }
      
         body {
             font-family: Arial, sans-serif;
-            
+           
         }
        h1{
         color: whitesmoke;
@@ -50,30 +98,41 @@
                 <a class="nav-link" href="contact.html">Contact Us</a>
               </li> 
                 </ul>
-              <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-primary" type="submit"style="background-color: rgb(224, 88, 111);color: whitesmoke">Search</button>
-              </form>
+<label for="searchbox"></label>
+<div class="search-container">              
+<input type="text" id="searchInput" placeholder="Search books...">
+<ul id="suggestionsList"></ul>
+       </div>       
+                
+             
+          
+               
+             
             </div>
         </div>
     </nav>       
 </div>
 <div class="card bg-dark text-white">
-  <img src="books.jpg" class="card-img" alt="Stony Beach" height="460px" style="opacity: 0.5;"/>
+  <img src="books.jpg" class="card-img" alt="Stony Beach" height="460px" style="opacity:0.7;"/>
   <div class="card-img-overlay" style="text-align: center;">
+    
+  
+    <h5 class="card-title" style= "font-size: 25px;">
+      <h1 >Welcome to Arcane Archives</h1>
+      <br>
+     <h3 >Welcome to our Online Library!</h3>
+<br>
+<p style=" font-size: 20px; color:rgb(255, 253, 253);">Explore a vast collection of digital resources at your fingertips. 
+  Whether you're seeking academic research or leisurely reading,our library offers an extensive range to cater to your needs.
+  Join our community of learners and embark on a journey of discovery and growth.
+<p>"Your Portal to Page-Turning Adventures"</p>
+<br>
     <br>
     <br>
-    <h5 class="card-title" style="font-size: 25px;">
-      <h1>Welcome to Arcane Archives</h1>
-      Welcome to our Online Library!
-<p>Explore a vast collection of digital resources at your fingertips. Whether you're seeking academic research, leisurely reading, or multimedia content, our library offers an extensive range to cater to your needs. Join our community of learners and embark on a journey of discovery and growth. .
-    </p>
-    <p class="card-text">"Your Portal to Page-Turning Adventures"</p>
-    <div class="input-group">
-      <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-      <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
-    </div>
-    </div>   
+    <a href='catalog.html'><button>View Book Cataog</button></a>
+  
+  </div>
+    </div> 
 </div>
 <br>
 <div class="container">
@@ -92,13 +151,14 @@
         </div>
         <div class="card-footer">
           <div class="text-center">
-          <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off";>
-            Read book
+          <button type="button" class="btn btn-primary" onclick="window.location.href='details.html#book-1'"data-toggle="button" aria-pressed="false" autocomplete="off";>
+            Read more
           </button>
           </div>
         </div>
       </div>
     </div>
+    
     <div class="col">
       <div class="card h-100">
         <img src="red.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
@@ -111,12 +171,13 @@
         </div>
         <div class="card-footer">
           <div class="text-center">
-          <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off";>
-            Read book
+          <button type="button" class="btn btn-primary" onclick="window.location.href='details.html#book-2'"data-toggle="button" aria-pressed="false" autocomplete="off";>
+            Read more
           </div>
         </div>
       </div>
     </div>
+    
     <div class="col">
       <div class="card h-100">
         <img src="cruel.jpg" class="card-img-top" alt="Palm Springs Road"/>
@@ -129,8 +190,8 @@
         </div>
         <div class="text-center">
         <div class="card-footer">
-          <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off";>
-            Read book
+          <button type="button" class="btn btn-primary"onclick="window.location.href='details.html#book-3'" data-toggle="button" aria-pressed="false" autocomplete="off";>
+            Read more
           </div> 
     </div>
     </div>
@@ -138,6 +199,69 @@
 </div>
 </div>
 <br>
+<div class="container">
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card h-100">
+      <img src="c.jpg" class="card-img-top" alt="Skyscrapers"/>
+      <div class="card-body">
+        <h5 class="card-title">Queen of Air and Darkness</h5>
+        <p class="card-text">
+          By Cassandra Clare .
+          Queen of Air and Darkness is the third and final book in The Dark Artifices trilogy by Cassandra Clare, which is the fourth chronological series in The Shadowhunter Chronicles.
+        </p>
+      </div>
+      <div class="card-footer">
+        <div class="text-center">
+        <button type="button" class="btn btn-primary" onclick="window.location.href='details.html#book-4'"data-toggle="button" aria-pressed="false" autocomplete="off";>
+          Read more
+        </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="col">
+  <div class="card h-100">
+    <img src="p.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
+    <div class="card-body">
+      <h5 class="card-title">Shadow Me</h5>
+      <p class="card-text">
+        By Tahereh Mafi.
+        Shadow Me is the third novella in the Shatter Me series by Tahereh Mafi. It was released on March 5, 2019. It bridges the gap between Restore Me and Defy Me.
+     </p>
+    </div>
+    <div class="card-footer">
+      <div class="text-center">
+      <button type="button" class="btn btn-primary"onclick="window.location.href='details.html#book-5'" data-toggle="button" aria-pressed="false" autocomplete="off";>
+        Read more
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col">
+  <div class="card h-100">
+    <img src="r.jpg" class="card-img-top" alt="Palm Springs Road"/>
+    <div class="card-body">
+    <h5 class="card-title">Amid Cloud and Bones</h5>
+    <p class="card-text">
+      By Ella Fields.
+      A princess determined to survive an arranged marriage to a heartless faerie prince is saved by a twist of fate that could destroy their world in this all-new standalone fantasy romance.
+    </p>
+    </div>
+    
+    <div class="card-footer">
+      <div class="text-center">
+      <button type="button" class="btn btn-primary" onclick="window.location.href='details.html#book-6'" data-toggle="button" aria-pressed="false" autocomplete="off";>
+     Read more
+      </div> 
+</div>
+</div>
+</div>
+</div>
+</div>
+<br>
+   
 <footer>
   <footer style="background-color: black;">
     <!-- Footer -->

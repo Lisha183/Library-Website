@@ -4,16 +4,131 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="j.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
+      .search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#searchInput {
+    padding: 8px;
+    width: 200px;
+}
+
+
+      #suggestionsList {
+    list-style: none;
+    padding: 0;
+    border: 1px solid #ccc;
+    max-width: 300px;
+    background: white;
+    position:absolute;
+    z-index: 1000;
+    
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background: lightgray;
+}
+
+     
+      /* Show box on hover */
+  .book-item:hover .book-info-box {
+    opacity: 1;
+  }
+        /* Hidden info box */
+  .book-info-box {
+    z-index: 10; 
+    width: 200px;
+    left: 20px; 
+
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    font-size: 14px;
+    padding: 15px;
+    border-radius: 8px;
+    width: 200px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    position:absolute;
+    top: 0;
+   
+    text-align: left;
+    
+   
+    
+    }
+     
+
+
+  .book-wrapper:hover .book-cover {
+    transform: scale(1.05); /* Slight zoom on hover */
+  }
+
+ 
+     .book-container {
+      justify-content: center;
+      padding: 10px;
+
+    display: flex;  /* Makes items align horizontally */
+    flex-wrap: wrap;
+    gap: 30px; /* Adds spacing between items */
+    align-items: stretch;
+  }
   
+
+  .book-item:hover .book-info {
+    opacity: 1;
+    
+  }
+  .book-item {
+    position: relative; /* Establishes positioning context for the info box */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    text-align: center; /* Centers text below images */
+    flex: 1 1 100px;
+    max-width: 120px;
+  }
+
+  .book-cover {
+    width: 100%; 
+    height: 250; 
+    object-fit: cover; 
+    transition: transform 0.3s ease;
+  }
+
+   @media (max-width: 600px) {
+    .book-container {
+      flex-direction:row; 
+    }
+    }
+    @media (max-width: 600px) {
+    .book-info-box {
+        left: 0;
+        top: 190px; 
+    }
+
+  }
          .nav-link{
         color: whitesmoke;
       }
         .col{
            width: 150px;
            padding: 15px ;
-           
+           display: flex;
+     
         }
         body{
        gap: 20px;
@@ -49,10 +164,12 @@
                 <a class="nav-link" href="contact.html">Contact Us</a>
               </li> 
                </ul>
-              <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit"style="background-color: rgb(224, 88, 111);color: whitesmoke" >Search</button>
-              </form>
+               <label for="searchbox"></label>
+     <div class="search-container">              
+<input type="text" id="searchInput" placeholder="Search books...">
+<ul id="suggestionsList"></ul>
+       </div> 
+              
             </div>
         </div>
     </nav>       
@@ -60,288 +177,721 @@
  
 <br>
   <h1>Bestsellers</h1>
-  <div class="row row-cols-1 row-cols-md-4 g-4" style="padding-bottom: 100px;">
-    <div class="col">
-      <div class="card h-1o0">
-        <img src="1.jpg" class="card-img-top" alt="Skyscrapers"/>
-        </div>
-        </div>
-    <div class="col">
-      <div class="card h-1o0" style="height: 70px;">
-        <img src="2.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
+  <div class="book-container">
+    <div class="book-item">
+      
+        <img src="1.jpg" class="book-cover" alt="Book 1">
+        <div class="book-info-box">
+          <div class="book-wrapper">
+          <h3>The Familiar</h3>
+          <p><strong>Author:</strong>Leigh Bardugo</p>
+          <p><strong>Genre:</strong> Fantasy</p>
+          <p>In a shabby house, on a shabby street, in the new capital of Madrid, Luzia Cotado uses scraps of magic to get through her days of endless toil as a scullion.</p>
       </div>
     </div>
-    <div class="col">
-        <div class="card h-1o0" style="height: 70px;">
-          <img src="3.jpg" class="card-img-top" alt="Palm Springs Road"/>
+  </div>
+       
+    
+    <div class="book-item">
+        <img src="2.jpg" class="book-cover" alt="Book 2">
+        <div class="book-info-box">
+          <div class="book-wrapper">
+          <h3>Most Ardently</h3>
+          <p><strong>Author:</strong> Gabe Cole Novoa</p>
+          <p><strong>Genre:</strong> Romance</p>
+          <p>London, 1812 . Oliver Bennet feels trapped—not just by the endless corsets, petticoats, and skirts he's forced to wear on a daily basis, but also by society's expectations.</p>
       </div>
     </div>
-        <div class="col">
-          <div class="card h-1o0">
-            <img src="4.jpg" class="card-img-top" alt="Skyscrapers"/>
-            </div>
-          </div>
-               <div class="col">
-               <div class="card h-1o0" style="height: 70px;">
-                  <img src="5.jpg" class="card-img-top" alt="Skyscrapers"/>
+    </div>
+    <div class="book-item">
+        <img src="ba.jpg" class="book-cover" alt="Book 3">
+       
+          <div class="book-wrapper">
+            <div class="book-info-box">
+          <h3>Mistborn</h3>
+          <p><strong>Author:</strong>Brandon Sanderson</p>
+          <p><strong>Genre:</strong> Sci-Fi</p>
+          <p>What if the whole world were a dead, blasted wasteland? Mistborn For a thousand years the ash fell and no flowers bloomed. For a thousand years the Skaa slaved in misery and lived in fear.</p>
+      </div>
+    </div>
+    </div>
+    <div class="book-item">
+      <img src="6.jpg" class="book-cover" alt="Book 3">
+      <div class="book-info-box">
+        <div class="book-wrapper">
+        <h3>Legendborn</h3>
+        <p><strong>Author:</strong>Tracy Deonn</p>
+        <p><strong>Genre:</strong> Horror</p>
+        <p>After her mother dies in an accident, sixteen-year-old Bree Matthews wants nothing to do with her family memories or childhood home.</p>
+    </div>
+  </div>
+</div>
+<div class="book-item">
+  <img src="4.jpg" class="book-cover" alt="Book 3">
+  <div class="book-info-box">
+    <div class="book-wrapper">
+    <h3>The Poison Season</h3>
+    <p><strong>Author:</strong>Mara Rutherford</p>
+    <p><strong>Genre:</strong> Fantasy</p>
+    <p>Leelo has spent her entire life on Endla, coexisting with the bloodthirsty Forest and respecting the poisonous lake that protects her island from outsiders who seek to destroy it.</p>
+</div>
+</div>
+</div>
+<div class="book-item">
+  <img src="15.jpg" class="book-cover" alt="Book 3">
+  <div class="book-info-box">
+    <div class="book-wrapper">
+    <h3>Normal People</h3>
+    <p><strong>Author:</strong>Sally Rooney</p>
+    <p><strong>Genre:</strong> Fiction</p>
+    <p>At school Connell and Marianne pretend not to know each other.He’s popular and well-adjusted, star of the school soccer team while she is lonely, proud, and intensely private.</p>
+</div>
+</div>
+</div>
+<div class="book-item">
+  <img src="18.jpg" class="book-cover" alt="Book 3">
+  <div class="book-info-box">
+    <div class="book-wrapper">
+    <h3>So Let Them Burn</h3>
+    <p><strong>Author:</strong>Kamilah Cole</p>
+    <p><strong>Genre:</strong> Fantasy</p>
+    <p>Whip-smart and immersive, this Jamaican-inspired fantasy follows a gods-blessed heroine who’s forced to choose between saving her sister or protecting her homeland.</p>
+</div>
+</div>
+</div>
+<div class="book-item">
+  <img src="19.jpg" class="book-cover" alt="Book 3">
+  <div class="book-info-box">
+    <div class="book-wrapper">
+    <h3>Never Thought I'd End Up Here</h3>
+    <p><strong>Author:</strong>Ann Liang</p>
+    <p><strong>Genre:</strong>Contemporary </p>
+    <p>Leah Zhang has spent her whole life in LA - it's all she's ever known. But after accidentally wishing her cousin ill health and a very depressing marriage at her wedding, her parents stage an intervention</p>
+</div>
+</div>
+</div>
+<div class="book-item">
+  <img src="23.jpg" class="book-cover" alt="Book 1">
+  <div class="book-info-box">
+    <div class="book-wrapper">
+    <h3>Fable for the End of the World</h3>
+    <p><strong>Author:</strong>Ava Reid</p>
+    <p><strong>Genre:</strong> Fiction</p>
+    <p>By encouraging massive accumulations of debt from its underclass, a single corporation, Caerus, controls all aspects of society.</p>
+</div>
+</div>
+</div>
+<div class="book-item">
+  <img src="25.jpg" class="book-cover" alt="Book 2">
+  <div class="book-info-box">
+    <div class="book-wrapper">
+    <h3>The Jasmine Throne</h3>
+    <p><strong>Author:</strong>Tasha Suri</p>
+    <p><strong>Genre:</strong> Fantasy</p>
+    <p>Inspired by the history and epics of India, in which a captive princess and a maidservant in possession of forbidden magic become unlikely allies on a dark journey to save their empire from the princess's traitor brother.</p>
+</div>
+</div>
+</div>
+<div class="book-item">
+  <img src="33.jpg" class="book-cover" alt="Book 3">
+  <div class="book-info-box">
+    <div class="book-wrapper">
+    <h3>A Million Worlds with You</h3>
+    <p><strong>Author:</strong>Claudia Gray</p>
+    <p><strong>Genre:</strong> Science Fiction</p>
+    <p>The fate of the multiverse rests in Marguerite Caine’s hands. Marguerite has been at the center of a cross-dimensional feud since she first traveled to another universe using her parents’ invention, the Firebird. </p>
+</div>
+</div>
+</div>
+<div class="book-item">
+<img src="34.jpg" class="book-cover" alt="Book 3">
+<div class="book-info-box">
+  <div class="book-wrapper">
+  <h3>We Hunt the Flame</h3>
+  <p><strong>Author:</strong>Hafsah Faizal</p>
+  <p><strong>Genre:</strong> Fantasy</p>
+  <p>Zafira is the Hunter, disguising herself as a man when she braves the cursed forest of the Arz to feed her people. Nasir is the Prince of Death, assassinating those foolish enough to defy his autocratic father, the sultan. </p>
+</div>
+</div>
+</div>
+<div class="book-item">
+<img src="36.jpg" class="book-cover" alt="Book 3">
+<div class="book-info-box">
+  <div class="book-wrapper">
+  <h3>The Spanish Love Deception</h3>
+  <p><strong>Author:</strong>Elena Armas</p>
+  <p><strong>Genre:</strong> Fiction</p>
+  <p>Catalina Martín desperately needs a date to her sister’s wedding. Especially since her little white lie about her American boyfriend has spiralled out of control.</p>
+</div>
+</div>
+</div>
+<div class="book-item">
+<img src="39.jpg" class="book-cover" alt="Book 3">
+<div class="book-info-box">
+  <div class="book-wrapper">
+  <h3>The Revolution of Ivy</h3>
+  <p><strong>Author:</strong>Amy Engel</p>
+  <p><strong>Genre:</strong> Dystopia</p>
+  <p>Ivy Westfall is beyond the fence and she is alone. Abandoned by her family and separated from Bishop Lattimer, Ivy must find a way to survive on her own in a land filled with countless dangers, both human and natural. </p>
+</div>
+</div>
+</div>
+<div class="book-item">
+<img src="41.jpg" class="book-cover" alt="Book 3">
+<div class="book-info-box">
+  <div class="book-wrapper">
+  <h3>The Half King</h3>
+  <p><strong>Author:</strong>Melissa Landers</p>
+  <p><strong>Genre:</strong> Fiction</p>
+  <p>The Great Betrayal changed everything for the Allied Realm. Long ago, the kingdom’s noble houses rose up against the goddess... and for their treachery, the firstborn of each noble family was cursed.</p>
+</div>
+</div>
+</div>
+<div class="book-item">
+<img src="49.jpg" class="book-cover" alt="Book 3">
+<div class="book-info-box">
+  <div class="book-wrapper">
+  <h3>A Dagger of Betrayal and Lies</h3>
+  <p><strong>Author:</strong>Taylor Vander Leest</p>
+  <p><strong>Genre:</strong> Fiction</p>
+  <p>In the wake of Olavi Sture’s attempted siege, the kingdom of Lamid rebuilds with steel and rumors.</p>
+</div>
+</div>
+</div>
+<div class="book-item">
+<img src="43.jpg" class="book-cover" alt="Book 3">
+<div class="book-info-box">
+  <div class="book-wrapper">
+  <h3>Of Air and Fire
+
+  </h3>
+  <p><strong>Author:</strong>Of Air and Fire</p>
+  <p><strong>Genre:</strong> Fiction</p>
+  <p>At 19, Paige battles the harsh realities of her life—an alcoholic mother, financial struggles, and a job that just barely keeps the lights on. Aeden Flynn, her next-door neighbor and best friend, offers unwavering support.</p>
+</div>
+</div>
+</div>
+<div class="book-item">
+  <img src="55.jpg" class="book-cover" alt="Book 1">
+  <div class="book-info-box">
+    <div class="book-wrapper">
+    <h3>A Vow of Dragons and Storms</h3>
+    <p><strong>Author:</strong>G. Bailey</p>
+    <p><strong>Genre:</strong> Fiction</p>
+    <p>It turns out the last of the dragon rider fae have been locked in a trap, a mansion with no doors, no way to leave for five hundred years, and I’m the first fae to enter.</p>
+  </div>
+  </div>
+</div>
+<div class="book-item">
+  <img src="54.jpg" class="book-cover" alt="Book 2">
+  <div class="book-info-box">
+    <div class="book-wrapper">
+    <h3>Enchanting the Elven Mage</h3>
+    <p><strong>Author:</strong>Alisha Klapheke</p>
+    <p><strong>Genre:</strong> Fiction</p>
+    <p>Today, Aury learned three things: One, she is the princess. Two, she might be a powerful mage. And three, a brutal mountain elf is on his way to the kingdom for their marriage.</p>
+  </div>
+  </div>
+</div>
+<div class="book-item">
+  <img src="56.jpg" class="book-cover" alt="Book 3">
+  <div class="book-info-box">
+    <div class="book-wrapper">
+    <h3>To Spark a Fae War</h3>
+    <p><strong>Author:</strong>Tessonja Odette</p>
+    <p><strong>Genre:</strong> Fiction</p>
+    <p>No one dreams of starting a war.
+      But without a fight there can be no revolution…
+      
+      I used to protect lives. Now I’ve ended more than I’ve saved. 
+      </p>
+  </div>
+  </div>
+</div>
+</div>
+<br>
+<br>
+                                
+          
+                  <h1>Non-Fiction</h1>
+                  <div class="book-container">
+                    <div class="book-item">
+                      
+                        <img src="na.jpg" class="book-cover" alt="Book 1">
+                        <div class="book-info-box">
+                          <div class="book-wrapper">
+                          <h3>The Diary of a Young Girl</h3>
+                          <p><strong>Author:</strong>Anne Frank</p>
+                          <p><strong>Genre:</strong> Biography</p>
+                          <p>Anne Frank's extraordinary diary, written in the Amsterdam attic where she and her family hid from the Nazis for two years, has become a world classic and a timeless testament to the human spirit. </p>
+                      </div>
+                    </div>
+                  </div>
+                       
+                    
+                    <div class="book-item">
+                        <img src="nb .jpg" class="book-cover" alt="Book 2">
+                        <div class="book-info-box">
+                          <div class="book-wrapper">
+                          <h3>Beyond Anxiety</h3>
+                          <p><strong>Author:</strong> Gabe Cole Novoa</p>
+                          <p><strong>Genre:</strong> Romance</p>
+                          <p>From bestselling author Martha Beck, a new path to overcoming anxiety by awakening the creativity within. We live in an epidemic of anxiety. Most of us assume that the key to overcoming it is to think our way out.</p>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="book-item">
+                        <img src="nc.jpg" class="book-cover" alt="Book 3">
+                       
+                          <div class="book-wrapper">
+                            <div class="book-info-box">
+                          <h3>I’m Glad My Mom Died</h3>
+                          <p><strong>Author:</strong>Jennette McCurdy</p>
+                          <p><strong>Genre:</strong> Memoir</p>
+                          <p>A heartbreaking and hilarious memoir by iCarly and Sam & Cat star Jennette McCurdy about her struggles as a former child actor—including eating disorders, addiction, and a complicated relationship with her overbearing mother—and how she retook control of her life.</p>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="book-item">
+                      <img src="nd.jpg" class="book-cover" alt="Book 3">
+                      <div class="book-info-box">
+                        <div class="book-wrapper">
+                        <h3>The Woman in Me</h3>
+                        <p><strong>Author:</strong>Britney Spears</p>
+                        <p><strong>Genre:</strong> Memoir</p>
+                        <p>In June 2021, the whole world was listening as Britney Spears spoke in open court. The impact of sharing her voice—her truth—was undeniable, and it changed the course of her life and the lives of countless others. </p>
+                    </div>
                   </div>
                 </div>
-                  <div class="col">
-                    <div class="card h-1o0" style="height: 70px;">
-                      <img src="6.jpg" class="card-img-top" alt="Skyscrapers"/>
-                      </div>
-                    </div>
-                      <div class="col">
-                        <div class="card h-1o0">
-                          <img src="7.jpg" class="card-img-top" alt="Skyscrapers"/>
-                          </div>
-                        </div>
-                          <div class="col">
-                            <div class="card h-1o0" style="height: 70px;">
-                              <img src="8.jpg" class="card-img-top" alt="Skyscrapers"/>
-                              </div>
-                              </div>
-                              <div class="col">
-                                <div class="card h-1o0" style="height: 70px;">
-                                  <img src="9.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                  </div>
-                                  </div>
-                                  <div class="col">
-                                    <div class="card h-1o0">
-                                      <img src="29.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
-                                    </div>
-                                  </div>
-                                  <div class="col">
-                                      <div class="card h-1o0" style="height: 70px;">
-                                        <img src="30.jpg" class="card-img-top" alt="Palm Springs Road"/>
-                                    </div>
-                                  </div>
-                                  <div class="col">
-                                    <div class="card h-1o0" style="height: 70px;">
-                                      <img src="31.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
-                                    </div>
-                                  </div>
-                                  <div class="col">
-                                      <div class="card h-1o0" >
-                                        <img src="60.jpg" class="card-img-top" alt="Palm Springs Road"/>
-                                    </div>
-                                  </div>
-                                      <div class="col">
-                                        <div class="card h-1o0" style="height: 70px;">
-                                          <img src="33.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                          </div>
-                                        </div>
-                                        <div class="col">
-                                          <div class="card h-1o0" style="height: 70px;">
-                                            <img src="34.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
-                                          </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="card h-1o0" style="height: 70px;">
-                                              <img src="35.jpg" class="card-img-top" alt="Palm Springs Road"/>
-                                          </div>
-                                        </div>
-                                            <div class="col">
-                                              <div class="card h-1o0">
-                                                <img src="36.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                                </div>
-                                              </div>
-                                              <div class="col">
-                                                <div class="card h-1o0">
-                                                  <img src="37.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                                  </div>
-                                                </div>
-
+                <div class="book-item">
+                  <img src="ne.jpg" class="book-cover" alt="Book 3">
+                  <div class="book-info-box">
+                    <div class="book-wrapper">
+                    <h3>Dinner for Vampires: Life on a Cult TV Show</h3>
+                    <p><strong>Author:</strong>Bethany Joy Lenz</p>
+                    <p><strong>Genre:</strong> Biography</p>
+                    <p>In the early 2000s, after years of hard work and determination to breakthrough as an actor, Bethany Joy Lenz was finally cast as one of the leads on the hit drama One Tree Hill.</p>
+                </div>
+                </div>
+                </div>
+                <div class="book-item">
+                  <img src="nf.jpg" class="book-cover" alt="Book 3">
+                  <div class="book-info-box">
+                    <div class="book-wrapper">
+                    <h3>Grimoire Girl: Creating an Inheritance of Magic and Mischief</h3>
+                    <p><strong>Author:</strong>Hilarie Burton Morgan</p>
+                    <p><strong>Genre:</strong>Memoir </p>
+                    <p>The long-awaited next book from actress and New York Times bestselling author of The Rural Diaries, Hilarie Burton Morgan. Through memoir essays and magical practices, Grimoire Girl connects us to the enchantment that exists inside us all.<p>
+                </div>
+                </div>
+                </div>
+                <div class="book-item">
+                  <img src="ng.jpg" class="book-cover" alt="Book 3">
+                  <div class="book-info-box">
+                    <div class="book-wrapper">
+                    <h3>Rebel Rising</h3>
+                    <p><strong>Author:</strong>Kamilah Cole</p>
+                    <p><strong>Genre:</strong> Autobiography</p>
+                    <p>From the scene-stealing star of Pitch Perfect and Bridesmaids comes a refreshingly candid, hilarious, and inspiring book about her unconventional journey to Hollywood success and loving herself.</p>
+                </div>
+                </div>
+                </div>
+                <div class="book-item">
+                  <img src="nh.jpg" class="book-cover" alt="Book 3">
+                  <div class="book-info-box">
+                    <div class="book-wrapper">
+                    <h3>Bits and Pieces: My Mother, My Brother, and Me</h3>
+                    <p><strong>Author:</strong>Whoopi Goldberg</p>
+                    <p><strong>Genre:</strong> Humor</p>
+                    <p>If it weren’t for Emma Johnson, Caryn Johnson would have never become Whoopi Goldberg. Emma gave her children the loving care and wisdom they needed to succeed in life, always encouraging them to be true to themselves.</p>
+                </div>
+                </div>
+                </div>
+                <div class="book-item">
+                  <img src="ni.jpg" class="book-cover" alt="Book 1">
+                  <div class="book-info-box">
+                    <div class="book-wrapper">
+                    <h3>Master of Me: The Secret to Controlling Your Narrative</h3>
+                    <p><strong>Author:</strong>Keke Palmer</p>
+                    <p><strong>Genre:</strong>Self Help </p>
+                    <p>From the award-winning, multihyphenate global entertainer Keke Palmer comes the inspiring true story of her journey to understanding her genuine value.</p>
+                </div>
+                </div>
+                </div>
+                <div class="book-item">
+                  <img src="nj.jpg" class="book-cover" alt="Book 2">
+                  <div class="book-info-box">
+                    <div class="book-wrapper">
+                    <h3>Who's That Girl?</h3>
+                    <p><strong>Author:</strong>Kathy Iandoli</p>
+                    <p><strong>Genre:</strong> Biography Memoir</p>
+                    <p>The definitive autobiography from Eve, the multiplatinum, Grammy Award®–winning, Emmy®-nominated rapper, singer-songwriter, actor, mother, philanthropist, and entrepreneur.</p>
+                </div>
+                </div>
+                </div>
+                <div class="book-item">
+                  <img src="nk.jpg" class="book-cover" alt="Book 3">
+                  <div class="book-info-box">
+                    <div class="book-wrapper">
+                    <h3> Loud: Accept Nothing Less Than the Life You Deserve</h3>
+                    <p><strong>Author:</strong>Drew Afualo</p>
+                    <p><strong>Genre:</strong> Feminism</p>
+                    <p> Drew Afualo is best known as the internet’s 'Crusader for Women' and is at the head of a new generation of entertainment’s rising stars, with more than nine million followers across her social platforms.</p>
+                </div>
+                </div>
+                </div>
+                <div class="book-item">
+                <img src="nl.jpg" class="book-cover" alt="Book 3">
+                <div class="book-info-box">
+                  <div class="book-wrapper">
+                  <h3>How to Build a Fashion Icon:</h3>
+                  <p><strong>Author:</strong>Law Roach</p>
+                  <p><strong>Genre:</strong> Fashion</p>
+                  <p>A  groundbreaking confidence manifesto by world famous stylist and image architect Law Roach Law Roach is the mastermind behind looks that have broken the Internet time and again—from Zendaya at the Met Gala to Anya Taylor-Joy at the Golden Globes.</p>
+                </div>
+                </div>
+                </div>
+                <div class="book-item">
+                <img src="nm.jpg" class="book-cover" alt="Book 3">
+                <div class="book-info-box">
+                  <div class="book-wrapper">
+                  <h3>Cleavage: Men, Women, and the Space Between Us</h3>
+                  <p><strong>Author:</strong>Jennifer Finney Boylan</p>
+                  <p><strong>Genre:</strong> Sociology</p>
+                  <p>What is the difference between men and women? Jennifer examines the divisions—as well as the common ground—between the genders, and reflects on her own experiences, both difficult and joyful</p>
+                </div>
+                </div>
+                </div>
+                <div class="book-item">
+                <img src="nn.jpg" class="book-cover" alt="Book 3">
+                <div class="book-info-box">
+                  <div class="book-wrapper">
+                  <h3>Lovely One: A Memoir</h3>
+                  <p><strong>Author:</strong>Ketanji Brown Jackson</p>
+                  <p><strong>Genre:</strong> Law</p>
+                  <p>#1 NEW YORK TIMES BESTSELLER • In her inspiring, intimate memoir, the first Black woman to ever be appointed to the Supreme Court of the United States chronicles her extraordinary life story </p>
+                </div>
+                </div>
+                </div>
+                <div class="book-item">
+                <img src="no.jpg" class="book-cover" alt="Book 3">
+                <div class="book-info-box">
+                  <div class="book-wrapper">
+                  <h3>Connie: A Memoir</h3>
+                  <p><strong>Author:</strong>Connie Chung</p>
+                  <p><strong>Genre:</strong> History</p>
+                  <p>In an industry dominated by white men, Connie Chung stood alone, the first and only Asian woman to break into the television news industry. This is her extraordinary story, told with incisive wit and remarkable candor.</p>
+                </div>
+                </div>
+                </div>
+                <div class="book-item">
+                <img src="np.jpg" class="book-cover" alt="Book 3">
+                <div class="book-info-box">
+                  <div class="book-wrapper">
+                  <h3>Brooke Shields Is Not Allowed to Get Old: Thoughts on Aging as a Woman</h3>
+                  <p><strong>Author:</strong>Brooke Shields</p>
+                  <p><strong>Genre:</strong> Biography Memoir</p>
+                  <p>From generational icon Brooke Shields comes an intimate and empowering exploration of ageing that flips the script on the idea of what it means for a woman to grow older</p>
+                </div>
+                </div>
+                </div>
+                <div class="book-item">
+                <img src="nq.jpg" class="book-cover" alt="Book 3">
+                <div class="book-info-box">
+                  <div class="book-wrapper">
+                  <h3>The Truths We Hold: An American Journey</h3>
+                  <p><strong>Author:</strong>Kamala Harris</p>
+                  <p><strong>Genre:</strong>Politics </p>
+                  <p>From one of America's most inspiring political leaders, a book about the core truths that unite us, and the long struggle to discern what those truths are and how best to act upon them, in her own life and across the life of our country.</p>
+                </div>
+                </div>
+                </div>
+                <div class="book-item">
+                  <img src="nr.jpg" class="book-cover" alt="Book 1">
+                  <div class="book-info-box">
+                    <div class="book-wrapper">
+                    <h3>The Friday Afternoon Club: </h3>
+                    <p><strong>Author:</strong>Griffin Dunne</p>
+                    <p><strong>Genre:</strong> Fiction</p>
+                    <p>At nine, Sean Connery saved him from drowning. At thirteen, desperate to hook up with Janis Joplin, he attended his aunt Joan Didion's legendary L.A. party for the publication of Tom Wolfe's The Electric Kool-Aid Acid Test.</p>
                   </div>
-                  <h1>Non-Fiction</h1>
-                  <div class="row row-cols-1 row-cols-md-4 g-4" style="padding-bottom: 100px;">
-                    <div class="col">
-                      <div class="card h-1o0">
-                        <img src="10.jpg" class="card-img-top" alt="Skyscrapers"/>
-                        </div>
-                        </div>
-                    <div class="col">
-                      <div class="card h-1o0" style="height: 70px;">
-                        <img src="11.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
-                      </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-1o0" style="height: 70px;">
-                          <img src="12.jpg" class="card-img-top" alt="Palm Springs Road"/>
-                      </div>
-                    </div>
-                        <div class="col">
-                          <div class="card h-1o0">
-                            <img src="13.jpg" class="card-img-top" alt="Skyscrapers"/>
-                            </div>
-                            </div>
-                               <div class="col">
-                                <div class="card h-1o0" style="height: 70px;">
-                                  <img src="14.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                  </div>
-                                  </div>
-                                  <div class="col">
-                                    <div class="card h-1o0" style="height: 70px;">
-                                      <img src="15.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                      </div>
-                                      </div>
-                                      <div class="col">
-                                        <div class="card h-1o0">
-                                          <img src="16.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                          </div>
-                                          </div>
-                                          <div class="col">
-                                            <div class="card h-1o0" style="height: 70px;">
-                                              <img src="17.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                              </div>
-                                              </div>
-                                              <div class="col">
-                                                <div class="card h-1o0" style="height: 60px;">
-                                                  <img src="18.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                                  </div>
-                                                  </div>
-                                                  <div class="col">
-                                                    <div class="card h-1o0" style="height: 70px;">
-                                                      <img src="38.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
-                                                    </div>
-                                                  </div>
-                                                  <div class="col">
-                                                      <div class="card h-1o0" style="height: 70px;">
-                                                        <img src="39.jpg" class="card-img-top" alt="Palm Springs Road"/>
-                                                    </div>
-                                                  </div>
-                                                      <div class="col">
-                                                        <div class="card h-1o0">
-                                                          <img src="40.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                                          </div>
-                                                        </div>
-                                                        <div class="col">
-                                                          <div class="card h-1o0" style="height: 70px;">
-                                                            <img src="41.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
-                                                          </div>
-                                                        </div>
-                                                        <div class="col">
-                                                            <div class="card h-1o0" style="height: 70px;">
-                                                              <img src="42.jpg" class="card-img-top" alt="Palm Springs Road"/>
-                                                          </div>
-                                                        </div>
-                                                            <div class="col">
-                                                              <div class="card h-1o0">
-                                                                <img src="43.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                                                </div>
-                                                              </div>
-                                                              <div class="col">
-                                                                <div class="card h-1o0" style="height: 70px;">
-                                                                  <img src="44.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
-                                                                </div>
-                                                              </div>
-                                                              <div class="col">
-                                                                  <div class="card h-1o0" style="height: 70px;">
-                                                                    <img src="45.jpg" class="card-img-top" alt="Palm Springs Road"/>
-                                                                </div>
-                                                              </div>
-                                                                  <div class="col">
-                                                                    <div class="card h-1o0">
-                                                                      <img src="46.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                                                      </div>
-                                                                    </div>
-                                  </div>
-                                  
+                  </div>
+                </div>
+                <div class="book-item">
+                  <img src="ns.jpg" class="book-cover" alt="Book 2">
+                  <div class="book-info-box">
+                    <div class="book-wrapper">
+                    <h3>Scrappy Little Nobody</h3>
+                    <p><strong>Author:</strong>Anna Kendrick</p>
+                    <p><strong>Genre:</strong> Humor</p>
+                    <p>A collection of humorous autobiographical essays by the Academy Award-nominated actress and star of Up in the Air and Pitch Perfect..</p>
+                  </div>
+                  </div>
+                </div>
+                <div class="book-item">
+                  <img src="nt.jpg" class="book-cover" alt="Book 3">
+                  <div class="book-info-box">
+                    <div class="book-wrapper">
+                    <h3>The House of Hidden Meanings</h3>
+                    <p><strong>Author:</strong>RuPaul</p>
+                    <p><strong>Genre:</strong> Audiobook</p>
+                    <p>From international drag superstar and pop culture icon RuPaul, comes his most revealing and personal work to date—a brutally honest, surprisingly poignant, and deeply intimate memoir of growing up Black, poor, and queer in a broken home<p>
+                  </div>
+                  </div>
+                </div>
+                </div>
+                <br>
+                <br>
+                
                                   <h1>Fiction</h1>
-                                  <div class="row row-cols-1 row-cols-md-4 g-4" style="padding-bottom: 90px;">
-                                    <div class="col">
-                                      <div class="card h-1o0">
-                                        <img src="19.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                        </div>
-                                        </div>
-                                    <div class="col">
-                                      <div class="card h-1o0" style="height: 70px;">
-                                        <img src="20.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
-                                      </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="card h-1o0" style="height: 70px;">
-                                          <img src="21.jpg" class="card-img-top" alt="Palm Springs Road"/>
-                                      </div>
-                                    </div>
-                                        <div class="col">
-                                          <div class="card h-1o0">
-                                            <img src="22.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                           </div>
-                                            </div>
-                                               <div class="col">
-                                                <div class="card h-1o0" style="height: 70px;">
-                                                  <img src="24.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                                  </div>
-                                                  </div>
-                                                  <div class="col">
-                                                    <div class="card h-1o0" style="height: 70px;">
-                                                      <img src="25.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                                      <p>Tasha Suri</p>
-                                                      </div>
-                                                      </div>
-                                                      <div class="col">
-                                                        <div class="card h-1o0">
-                                                          <img src="26.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                                          </div>
-                                                          </div>
-                                                          <div class="col">
-                                                            <div class="card h-1o0" style="height: 70px;">
-                                                              <img src="27.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                                              </div>
-                                                              </div>
-                                                              <div class="col">
-                                                                <div class="card h-1o0" style="height: 60px;">
-                                                                  <img src="28.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                                                  </div>
-                                                                  </div>
-                                                                  <div class="col">
-                                                                    <div class="card h-1o0" style="height: 70px;">
-                                                                      <img src="47.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
+                                  
+                                                                <div class="book-container">
+                                                                  <div class="book-item">
+                                                                    
+                                                                      <img src="b.jpg" class="book-cover" alt="Book 1">
+                                                                      <div class="book-info-box">
+                                                                        <div class="book-wrapper">
+                                                                        <h3>Chain of Thorns</h3>
+                                                                        <p><strong>Author:</strong>Cassandra Clare</p>
+                                                                        <p><strong>Genre:</strong>Paranormal </p>
+                                                                        <p>James and Cordelia must save London—and their marriage—in this conclusion to the Last Hours series from author Cassandra Clare.
+                                                                          Chain of Thorns is a Shadowhunters novel.</p>
                                                                     </div>
                                                                   </div>
-                                                                  <div class="col">
-                                                                      <div class="card h-1o0" style="height: 70px;">
-                                                                        <img src="48.jpg" class="card-img-top" alt="Palm Springs Road"/>
-                                                                    </div>
-                                                                  </div>
-                                                                      <div class="col">
-                                                                        <div class="card h-1o0">
-                                                                          <img src="49.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                                                          </div>
-                                                                        </div>
-                                                                        <div class="col">
-                                                                          <div class="card h-1o0" style="height: 70px;">
-                                                                            <img src="50.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
-                                                                          </div>
-                                                                        </div>
-                                                                        <div class="col">
-                                                                            <div class="card h-1o0" style="height: 70px;">
-                                                                              <img src="51.jpg" class="card-img-top" alt="Palm Springs Road"/>
-                                                                          </div>
-                                                                        </div>
-                                                                            <div class="col">
-                                                                              <div class="card h-1o0">
-                                                                                <img src="52.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                                                                </div>
-                                                                              </div>
-                                                                              <div class="col">
-                                                                                <div class="card h-1o0" style="height: 70px;">
-                                                                                  <img src="53.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
-                                                                                </div>
-                                                                              </div>
-                                                                              <div class="col">
-                                                                                  <div class="card h-1o0" style="height: 70px;">
-                                                                                    <img src="54.jpg" class="card-img-top" alt="Palm Springs Road"/>
-                                                                                </div>
-                                                                              </div>
-                                                                                  <div class="col">
-                                                                                    <div class="card h-1o0">
-                                                                                      <img src="55.jpg" class="card-img-top" alt="Skyscrapers"/>
-                                                                                      </div>
-                                                                                    </div>    
                                                                 </div>
+                                                                     
+                                                                  
+                                                                  <div class="book-item">
+                                                                      <img src="a.jpg" class="book-cover" alt="Book 2">
+                                                                      <div class="book-info-box">
+                                                                        <div class="book-wrapper">
+                                                                        <h3>Chain of Gold</h3>
+                                                                        <p><strong>Author:</strong>Cassandra Clare </p>
+                                                                        <p><strong>Genre:</strong> Romance</p>
+                                                                        <p>Cordelia Carstairs is a Shadowhunter, a warrior trained since childhood to battle demons. When her father is accused of a terrible crime, she and her brother travel to London in hopes of preventing the family’s ruin.</p>
+                                                                    </div>
+                                                                  </div>
+                                                                  </div>
+                                                                  <div class="book-item">
+                                                                      <img src="cc.jpg" class="book-cover" alt="Book 3">
+                                                                     
+                                                                        <div class="book-wrapper">
+                                                                          <div class="book-info-box">
+                                                                        <h3>Chain of Iron</h3>
+                                                                        <p><strong>Author:</strong>Cassandra Clare</p>
+                                                                        <p><strong>Genre:</strong> Fantasy</p>
+                                                                        <p>The Shadowhunters must catch a killer in Edwardian London in this dangerous and romantic sequel to the #1 New York Times bestselling novel Chain of Gold, from New York Times and USA TODAY bestselling author Cassandra Clare. Chain of Iron is a Shadowhunters novel.
+
+                                                                          Cordelia Carstairs seems to have everything she ever wanted. She’s engaged to marry James Herondale, the boy she has loved since childhood. She has a new life in London with her best friend Lucie Herondale and James’s charming companions, the Merry Thieves. She is about to be reunited with her beloved father. And she bears the sword Cortana, a legendary hero’s blade.
+                                                                          
+                                                                          But the truth is far grimmer. James and Cordelia’s marriage is a lie, arranged to save Cordelia’s reputation. James is in love with the mysterious Grace Blackthorn whose brother, Jesse, died years ago in a terrible accident. Cortana burns Cordelia’s hand when she touches it, while her father has grown bitter and angry. And a serial murderer is targeting the Shadowhunters of London, killing under cover of darkness, then vanishing without a trace.
+                                                                          
+                                                                          Together with the Merry Thieves, Cordelia, James, and Lucie must follow the trail of the knife-wielding killer through the city’s most dangerous streets. All the while, each is keeping a shocking secret: Lucie, that she plans to raise Jesse from the dead; Cordelia, that she has sworn a dangerous oath of loyalty to a mysterious power; and James, that he is being drawn further each night into the dark web of his grandfather, the arch-demon Belial. And that he himself may be the killer they seek.
+                                                                          
+                                                                          </p>
+                                                                    </div>
+                                                                  </div>
+                                                                  </div>
+                                                                  <div class="book-item">
+                                                                    <img src="ab.jpg" class="book-cover" alt="Book 3">
+                                                                    <div class="book-info-box">
+                                                                      <div class="book-wrapper">
+                                                                      <h3>Water Moon</h3>
+                                                                      <p><strong>Author:</strong>Samantha Sotto Yambao</p>
+                                                                      <p><strong>Genre:</strong>Magical Realism </p>
+                                                                      <p>A woman inherits a pawnshop where you can sell your regrets, and then embarks on a magical journey when a charming young physicist wanders into the shop, in this dreamlike and enchanting fantasy novel.</p>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                              <div class="book-item">
+                                                                <img src="ac.jpg" class="book-cover" alt="Book 3">
+                                                                <div class="book-info-box">
+                                                                  <div class="book-wrapper">
+                                                                  <h3>Honeysuckle and Bone</h3>
+                                                                  <p><strong>Author:</strong>Trisha Tobias</p>
+                                                                  <p><strong>Genre:</strong> Horror</p>
+                                                                  <p>On the run from her own dark secrets, a teen girl becomes the nanny for a prestigious family on their extravagant Jamaican estate—but things aren't quite as they seem, and she quickly discovers even paradise may be haunted. </p>
+                                                              </div>
+                                                              </div>
+                                                              </div>
+                                                              <div class="book-item">
+                                                                <img src="af.jpg" class="book-cover" alt="Book 3">
+                                                                <div class="book-info-box">
+                                                                  <div class="book-wrapper">
+                                                                  <h3>Everything I Promised You</h3>
+                                                                  <p><strong>Author:</strong>Katy Upperman</p>
+                                                                  <p><strong>Genre:</strong>Young Adult</p>
+                                                                  <p>An emotionally raw and romantic YA novel perfect for fans of Laura Nowlin's If He Had Been with Me.
+
+                                                                    Their love was written in the stars, but how is Lia to move on when death trumps fate? 
+                                                                   
+                                                                    <p>
+                                                              </div>
+                                                              </div>
+                                                              </div>
+                                                              <div class="book-item">
+                                                                <img src="ai.jpg" class="book-cover" alt="Book 3">
+                                                                <div class="book-info-box">
+                                                                  <div class="book-wrapper">
+                                                                  <h3>Cruel Is the Light</h3>
+                                                                  <p><strong>Author:</strong>Sophie Clark</p>
+                                                                  <p><strong>Genre:</strong> Romantasy</p>
+                                                                  <p>An epic new fantasy about a demon hunter and a foot soldier thrown together in a centuries-old war… and the forbidden love that could change the course of history.
+                                                                  </p>
+                                                              </div>
+                                                              </div>
+                                                              </div>
+                                                              <div class="book-item">
+                                                                <img src="ag.jpg" class="book-cover" alt="Book 3">
+                                                                <div class="book-info-box">
+                                                                  <div class="book-wrapper">
+                                                                  <h3>After Life</h3>
+                                                                  <p><strong>Author:</strong>Gayle Forman</p>
+                                                                  <p><strong>Genre:</strong> Paranormal</p>
+                                                                  <p>"After Life is a masterful tale about a family coping with loss, showing the way grief affects us and people we don't even know in ways we don't see. Once I met Amber and her family, I didn't want to let them go."</p>
+                                                              </div>
+                                                              </div>
+                                                              </div>
+                                                              <div class="book-item">
+                                                                <img src="aj.jpg" class="book-cover" alt="Book 1">
+                                                                <div class="book-info-box">
+                                                                  <div class="book-wrapper">
+                                                                  <h3>Lies on the Serpent's Tongue</h3>
+                                                                  <p><strong>Author:</strong>Kate Pearsall</p>
+                                                                  <p><strong>Genre:</strong>Horror</p>
+                                                                  <p>A beautifully dark YA set in Appalachia tinged with magic, mystery, murder, and romance. For fans of House of Hollow and Wilder Girls!</p>
+                                                              </div>
+                                                              </div>
+                                                              </div>
+                                                              <div class="book-item">
+                                                                <img src="ak.jpg" class="book-cover" alt="Book 2">
+                                                                <div class="book-info-box">
+                                                                  <div class="book-wrapper">
+                                                                  <h3>The Queen's Spade</h3>
+                                                                  <p><strong>Author:</strong>Sarah Raughley</p>
+                                                                  <p><strong>Genre:</strong> Historical Fiction</p>
+                                                                  <p>In this riveting historical thriller that’s loosely inspired by true life events, The Count of Monte Cristo meets Bridgerton as revenge, romance, and twisted secrets take center stage in Victorian England’s royal court.</p>
+                                                              </div>
+                                                              </div>
+                                                              </div>
+                                                              <div class="book-item">
+                                                                <img src="al.jpg" class="book-cover" alt="Book 3">
+                                                                <div class="book-info-box">
+                                                                  <div class="book-wrapper">
+                                                                  <h3> Brewed with Love</h3>
+                                                                  <p><strong>Author:</strong>Shelly Page</p>
+                                                                  <p><strong>Genre:</strong> Fantasy</p>
+                                                                  <p>A cozy, contemporary romantasy about a teen witch who wants to keep her family’s apothecary from falling to the competition but can only do so with assistance from her first crush. </p>
+                                                              </div>
+                                                              </div>
+                                                              </div>
+                                                              <div class="book-item">
+                                                              <img src="an.jpg" class="book-cover" alt="Book 3">
+                                                              <div class="book-info-box">
+                                                                <div class="book-wrapper">
+                                                                <h3>Bingsu for Two</h3>
+                                                                <p><strong>Author:</strong>Sujin Witherspoon</p>
+                                                                <p><strong>Genre:</strong> Young Adult Romance</p>
+                                                                <p>This outrageously charming and infuriatingly adorable enemies-to-lovers coffee shop romance is perfect for fans of Jenny Han and Better Than the Movies.</p>
+                                                              </div>
+                                                              </div>
+                                                              </div>
+                                                              <div class="book-item">
+                                                              <img src="ao.jpg" class="book-cover" alt="Book 3">
+                                                              <div class="book-info-box">
+                                                                <div class="book-wrapper">
+                                                                <h3>Liar's Kingdom
+
+                                                                </h3>
+                                                                <p><strong>Author:</strong>Christine Calella</p>
+                                                                <p><strong>Genre:</strong>Retellings </p>
+                                                                <p>Ell has spent years slaving away for her cruel stepfamily. So when Prince Bayard—who seems to have difficulty recognizing faces—shows up at her door with a glass slipper, Ell allows him to believe she danced with him at the ball. </p>
+                                                              </div>
+                                                              </div>
+                                                              </div>
+                                                              <div class="book-item">
+                                                              <img src="ap.jpg" class="book-cover" alt="Book 3">
+                                                              <div class="book-info-box">
+                                                                <div class="book-wrapper">
+                                                                <h3>The Afterdark</h3>
+                                                                <p><strong>Author:</strong>E. Latimer</p>
+                                                                <p><strong>Genre:</strong> Horror</p>
+                                                                <p>Queer horror at a boarding school with a Lovecraftian twist in this new YA novel from E. Latimer, author of the acclaimed The Strange and Deadly Portraits of Bryony Gray.
+                                                                </p>
+                                                              </div>
+                                                              </div>
+                                                              </div>
+                                                              <div class="book-item">
+                                                              <img src="aq.jpg" class="book-cover" alt="Book 3">
+                                                              <div class="book-info-box">
+                                                                <div class="book-wrapper">
+                                                                <h3>On the Wings of la Noche</h3>
+                                                                <p><strong>Author:</strong>Vanessa L. Torres</p>
+                                                                <p><strong>Genre:</strong> Mythology</p>
+                                                                <p>Noche is a Lechuza by night, an ethereal jet-black owl who guides the dead to the after. Except now, Noche cannot bring herself to escort her dead girlfriend, whose soul is fading the harder Noche holds on—an aching romance about first and second loves and finding the strength to let go.
+                                                                  </p>
+                                                              </div>
+                                                              </div>
+                                                              </div>
+                                                              <div class="book-item">
+                                                              <img src="ar.jpg" class="book-cover" alt="Book 3">
+                                                              <div class="book-info-box">
+                                                                <div class="book-wrapper">
+                                                                  <h3>The Devourer</h3>
                                                             
+                                                                <p><strong>Author:</strong>Alison Ames</p>
+                                                                <p><strong>Genre:</strong> Pirates</p>
+                                                                <p>When Adra Dantes’ half-brother Cameron attacks their father and robs him of a priceless treasure map, he leaves him a shell of the pirate captain he once was. </p>
+                                                              </div>
+                                                              </div>
+                                                              </div>
+                                                              <div class="book-item">
+                                                              <img src="as.jpg" class="book-cover" alt="Book 3">
+                                                              <div class="book-info-box">
+                                                                <div class="book-wrapper">
+                                                                <h3>Truth, Lies, and the Questions in Between</h3>
+                                                                <p><strong>Author:</strong>L.M. Elliott</p>
+                                                                <p><strong>Genre:</strong>Historical Fiction</p>
+                                                                <p>As a presidency unravels and the fight for women’s rights intensifies, a teen girl’s future will be determined by her willingness to seek the truth, in this stunning work of historical fiction perfect for fans of Monica Hesse and Malinda Lo.</p>
+                                                              </div>
+                                                              </div>
+                                                              </div>
+                                                              <div class="book-item">
+                                                                <img src="at.jpg" class="book-cover" alt="Book 1">
+                                                                <div class="book-info-box">
+                                                                  <div class="book-wrapper">
+                                                                  <h3>The Wishless Ones</h3>
+                                                                  <p><strong>Author:</strong>Hafsah Faizal</p>
+                                                                  <p><strong>Genre:</strong>Retellings </p>
+                                                                  <p>From #1 New York Times bestselling author Hafsah Faizal comes the untold origin story of Agrabah’s future royal vizier Jafar and his brother Rohan.<p>
+                                                                </div>
+                                                                </div>
+                                                              </div>
+                                                              <div class="book-item">
+                                                                <img src="au.jpg" class="book-cover" alt="Book 2">
+                                                                <div class="book-info-box">
+                                                                  <div class="book-wrapper">
+                                                                  <h3>A Traitorous Heart</h3>
+                                                                  <p><strong>Author:</strong>Erin Cotter</p>
+                                                                  <p><strong>Genre:</strong> Historical Fiction</p>
+                                                                  <p>A noblewoman in the scandalous French court finds herself under the dangerous and watchful eye of the Parisian royalty when she falls in love with the handsome king who is betrothed to her former lover 
+                                                                    </p>
+                                                                </div>
+                                                                </div>
+                                                              </div>
+                                                              <div class="book-item">
+                                                                <img src="av.jpg" class="book-cover" alt="Book 3">
+                                                                <div class="book-info-box">
+                                                                  <div class="book-wrapper">
+                                                                  <h3>'Til Death</h3>
+                                                                  <p><strong>Author:</strong>Busayo Matuluko</p>
+                                                                  <p><strong>Genre:</strong> Mystery Thriller</p>
+                                                                  <p>A slick and addictive YA mystery thriller that celebrates the nuances and dramas of Nigerian family and culture, perfect for fans of Holly Jackson and Karen M. McManus.<p>
+                                                                </div>
+                                                                </div>
+                                                              </div>
+                                                              </div>
+                                                              <br>                                             
                                                   
           <footer style="padding-top: 0px;"> 
             <footer style="background-color: black;">

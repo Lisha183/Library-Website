@@ -4,14 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="details.js"></script>
+    <script src="j.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
+      .search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#searchInput {
+    padding: 8px;
+    width: 200px;
+}
+
+
+      #suggestionsList {
+    list-style: none;
+    padding: 0;
+    border: 1px solid #ccc;
+    max-width: 300px;
+    background: white;
+    position:absolute;
+    z-index: 1000;
+    
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background: lightgray;
+}
+
+    body  {   
+            font-family: 'Merriweather', serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            text-decoration: none;
+            justify-content: center;
+        }
+
+        .book-container {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          
+            gap: 20px;
+            max-width: 10000px; 
+            max-height: 30000px;
+            padding: 24px;
+        }
+
+        .book-image img {
+            width: 150px;
+            border-radius: 8px;
+        }
+
+        .book-details {
+            flex: 1;
+        }
+
+        .book-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .book-description {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .author {
+            font-style: italic;
+            font-size: 13px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .request-button {
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            font-size: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .request-button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
        .nav-link{
         color: whitesmoke;
       }
         .col{
            width: 150px;
-           padding: 15px;
+           padding: px;
 
         }
     </style>
@@ -44,30 +147,154 @@
                     <a class="nav-link" href="contact.html">Contact Us</a>
                   </li> 
                    </ul>
-                  <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit" style="background-color: rgb(224, 88, 111);color: whitesmoke">Search</button>
-                  </form>
+                   <label for="searchbox"></label>
+                   <div class="search-container">              
+                   <input type="text" id="searchInput" placeholder="Search books...">
+                   <ul id="suggestionsList"></ul>
+                          </div> 
                 </div>
             </div>
         </nav>       
       </div>
      </div>
-     <div class="card mb-3" style="max-width: 4000px; max-height: 7000px;padding: 24px; ;">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img src="c.jpg" class="img-fluid rounded-start" alt="..."; width="270px">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h3 class="card-title">Queen of Air and Darkness</h3>
-            <p class="card-text">
-              Innocent blood has been spilled on the steps of the Council Hall, the sacred stronghold of the Shadowhunters. In the wake of the tragic death of Livia Blackthorn, the Clave teeters on the brink of civil war. One fragment of the Blackthorn family flees to Los Angeles, seeking to discover the source of the disease that is destroying the race of warlocks. Meanwhile, Julian and Emma take desperate measures to put their forbidden love aside and undertake a perilous mission to Faerie to retrieve the Black Volume of the Dead. What they find in the Courts is a secret that may tear the Shadow World asunder and open a dark path into a future they could never have imagined. Caught in a race against time, Emma and Julian must save the world of Shadowhunters before the deadly power of the parabatai curse destroys them and everyone they love.
-            <p class="card-text"><small class="text-muted">Cassandra Clare</small></p>
-          </div>
-        </div>
-      </div>
+     <h3> BOOK DETAILS</h3>
+    <br>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const bookId = urlParams.get("id");
+
+            let books = [
+                { id: 1, title: "LORE", author: "Alexandra Bracken" },
+                { id: 2, title: "Red Queen", author: "Victoria Aveyard" },
+                { id: 3, title: "Cruel Prince", author: "Holly Black" }
+                // Add other books as needed
+            ];
+
+            let book = books.find(b => b.id == bookId);
+
+            if (book) {
+                document.getElementById("bookTitle").textContent = book.title;
+                document.getElementById("bookAuthor").textContent = book.author;
+                document.getElementById("bookDetails").innerText = book.details;
+            } else {
+                document.getElementById("bookTitle").textContent = "Book not found";
+                document.getElementById("bookAuthor").textContent = "";
+
+            document.getElementById("bookDetails").innerText = "";
+          }
+        });
+    </script>
+    
+  <div class="book-container">
+    <div class="book-image">
+        <img src="red.jpg" alt="Red">
     </div>
+    <div class="book-details">
+      <div class="card" id="book-2"></div>
+        <div class="book-title">Red Queen</div>
+        <div class="book-description">
+            The Reds are commoners, ruled by a Silver elite in possession of god-like superpowers. 
+            Mare Barrow, a seventeen-year-old Red girl, seems destined for poverty—until a twist of fate 
+            places her in front of the Silver court. But she harbors a deadly secret of her own...
+        </div>
+        <div class="author">Victoria Aveyard</div>
+        <button class="request-button" onclick="requestBook()">Request Book</button>
+    </div>
+</div>
+<br>
+ <div class="book-container">
+  <div class="book-image">
+      <img src="c.jpg" alt="Queen">
+  </div>
+  <div class="book-details">
+  <div class="card" id="book-2"></div>
+    <div class="book-title">Cassandra Clare</div>
+    <div class="book-description">
+      Innocent blood has been spilled on the steps of the Council Hall, the sacred stronghold of the Shadowhunters.
+      In the wake of the tragic death of Livia Blackthorn, the Clave teeters on the brink of civil war. One fragment of the Blackthorn family flees to Los Angeles, seeking to discover the source of the disease that is destroying the race of warlocks.
+      Meanwhile, Julian and Emma take desperate measures to put their forbidden love aside and undertake a perilous mission to Faerie to retrieve the Black Volume of the Dead. What they find in the Courts is a secret that may tear the Shadow World asunder and open a dark path into a future they could never have imagined.
+      Caught in a race against time, Emma and Julian must save the world of Shadowhunters before the deadly power of the parabatai curse destroys them and everyone they love.
+    </div>
+    <div class="author">Cassandra Clare</div>
+    <button class="request-button" onclick="requestBook()">Request Book</button>
+</div>
+</div>
+<br>
+<div class="book-container">
+  <div class="book-image">
+      <img src="cruel.jpg" alt="cruel">
+  </div>
+<div class="book-details">
+  <div class="card" id="book-3"></div>
+    <div class="book-title">Cruel Prince</div>
+    <div class="book-description">
+      The Cruel Prince by Holly Black tells the story of Jude Duarte. Before she was born, Jude’s mother had a fling with a faerie named Madoc. 
+      She ran away with their daughter, Vivienne, and started a life in the mortal world.Years later, Madoc came to collect what he thinks is his.
+       In the ensuing fight, he kills Jude’s parents and takes her, her twin sister Taryn, and their half-sister Vivienne to live with him in the faerie realm.
+       Jude and Taryn find it difficult living in this magical land, as certain foods can muddle their minds, and without proper charms the faeries could put them in a trance.
+       They are ostracized by the kids their age for being human. The worst is Prince Cardan, who goes out of his way to make life miserable for them.
+    </div>
+    <div class="author">Holly Black</div>
+    <button class="request-button" onclick="requestBook()">Request Book</button>
+</div>
+</div>
+<br>
+<div class="book-container">
+  <div class="book-image">
+    <img src="p.jpg" alt="shadow">
+  </div>
+<div class="book-details">
+  <div class="card" id="book-5"></div>
+    <div class="book-title">Shadow Me</div>
+    <div class="book-description">
+      Fan favorite character Kenji Kishimoto narrates this gripping companion novella to Tahereh Mafi’s New York Times bestselling Shatter Me series, set during the explosive events in Restore Me!
+
+      Juliette is still reeling from Warner's betrayal, and Kenji is trying to balance his friendship with her with his responsibilities as a leader of the resistance against the Reestablishment. Things get even more interesting when an unexpected person from Omega Point’s past surfaces.
+
+      The ending of Restore Me left readers gasping, and this novella full of Kenji’s signature sass and big heart is the perfect story to tide fans over until Defy Me, the shocking fifth book in the Shatter Me series, hits shelves in April 2019.  
+    </div>
+    <div class="author">Tahereh Mafi</div>
+    <button class="request-button" onclick="requestBook()">Request Book</button>
+</div>
+</div>
+<br>
+<div class="book-container">
+  <div class="book-image">
+      <img src="lore.jpg" alt="LORE">
+  </div>
+<div class="book-details">
+  <div class="card" id="book-1"></div>
+    <div class="book-title">LORE</div>
+    <div class="book-description">
+      After Lore Perseous’ family is brutally murdered, she does everything she can to protect herself from the same fate, even if it means hiding in plain sight in New York City.
+      However, she is soon tracked down by two participants of the Agon — a traditional hunt of the Greek gods that occurs every seven years — who both desperately need her help.
+      Will Lore decide to rejoin the Agon and avenge her family’s death with so much at risk? Fraught with epic world-building and high stakes action, Lore is a rich tale of Greek mythology meets The Hunger Games that YA Fantasy fans won’t want to miss.
+    </div>
+    <div class="author">Alexandra Bracken</div>
+    <button class="request-button" onclick="requestBook()">Request Book</button>
+</div>
+</div>
+<br>
+<div class="book-container">
+  <div class="book-image">
+      <img src="r.jpg" alt="clouds">
+  </div>
+<div class="book-details">
+  <div class="card" id="book-6"></div>
+    <div class="book-title">Amid Clouds and Bones</div>
+    <div class="book-description">
+      A princess determined to survive an arranged marriage to a heartless faerie prince is saved by a twist of fate that could destroy their world in this all-new standalone fantasy romance.
+
+      As the half faerie daughter of a human king, my days were spent tucked out of sight—until the Seelie Fae sought an alliance with our kingdom. In exchange for my father’s help in defeating their Unseelie enemies, I would wed Atakan the heartless.
+      
+      The Seelie prince loathed everyone, but none more than me. Throughout the years leading to our nuptials, each encounter grew more terrifying than the last as he demonstrated how he’d earned his infamous reputation.
+      
+    </div>
+    <div class="author">Ella Fields</div>
+    <button class="request-button" onclick="requestBook()">Request Book</button>
+</div>
+</div>
     <h4 style="padding: 14px;">Frequently bought with:</h4>
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col">
@@ -209,4 +436,5 @@
 <!-- Footer -->
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="details.js"></script>
 </html>
