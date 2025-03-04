@@ -65,8 +65,33 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
-function requestBook() {
-    alert("Your book request has been submitted successfully!");
-}
+ 
+ function requestBook(button) {
+    button.textContent = "Book Requested";
+    button.classList.remove("btn-request-book");
+    button.classList.add("btn-book-requested");
+    button.disabled = true;
+  }
+  // ... (Your existing JavaScript code) ...
+
+searchForm.addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent default form submission
+    let query = searchInput.value.trim().toLowerCase();
+
+    // Find the book by ID or title
+    let foundBook = books.find(book => {
+        const bookId = parseInt(query);
+        return (bookId && book.id === bookId) || book.title.toLowerCase().includes(query);
+    });
+
+    if (foundBook) {
+        // Redirect to details.html with the book ID
+        window.location.href = `details.html?id=${foundBook.id}#book-${foundBook.id}`;
+    } else {
+        alert("Book not found!");
+    }
+});
+
+// ... (Rest of your JavaScript code) ...
 
 
